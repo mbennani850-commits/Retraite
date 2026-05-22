@@ -39,7 +39,7 @@ const NOW_M = TODAY.getMonth();
 const PREV = new Date(TODAY.getFullYear(), TODAY.getMonth()-1, 1);
 const PREV_Y = PREV.getFullYear();
 const PREV_M = PREV.getMonth();
-// Cotisations TEC démarrent avril 2026
+// Cotisations REC démarrent avril 2026
 const REF_Y = 2026, REF_M = 3;
 
 // ─────────────────────────────────────────────────
@@ -99,14 +99,14 @@ const S = {
   btnDel: {background:'none',border:'none',color:'#64748b',cursor:'pointer',fontSize:16,padding:'2px 6px'},
 
   navRow: {display:'flex',justifyContent:'space-between',alignItems:'center',marginTop:20,flexWrap:'wrap',gap:8},
-  grid2: {display:'grid',gridTemplateColumns:'1fr 1fr',gap:12},
+  grid2: {display:'grid',gridTemplaREColumns:'1fr 1fr',gap:12},
 
   ibox: {background:'#0a1520',borderLeft:'3px solid #1e3a5f',padding:'8px 12px',fontSize:11,color:'#64748b',borderRadius:'0 6px 6px 0',lineHeight:1.6,marginBottom:10},
 
   chart: {display:'flex',alignItems:'flex-end',gap:2,height:120,padding:'0 2px',marginTop:8},
   bar: (h,c,op)=>({flex:1,height:h,background:c,opacity:op,borderRadius:'2px 2px 0 0',minHeight:2,transition:'height .4s cubic-bezier(.4,0,.2,1)'}),
 
-  scGrid: {display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:8,marginTop:8},
+  scGrid: {display:'grid',gridTemplaREColumns:'repeat(3,1fr)',gap:8,marginTop:8},
   scBox: (c)=>({background:c+'10',border:`1px solid ${c}25`,borderRadius:8,padding:'12px',textAlign:'center'}),
   scLbl: {fontSize:9,letterSpacing:'0.1em',textTransform:'uppercase',color:'#64748b',marginBottom:4},
   scCap: (c)=>({fontSize:15,fontWeight:700,color:c,fontVariantNumeric:'tabular-nums'}),
@@ -156,7 +156,7 @@ const fmtS = n => {
 };
 
 // ─────────────────────────────────────────────────
-// GÉNÈRE ROWS TEC
+// GÉNÈRE ROWS REC
 // ─────────────────────────────────────────────────
 function genRcRows(retY, defCotis, defExcep, existing={}) {
   const rows=[];
@@ -176,7 +176,7 @@ function genRcRows(retY, defCotis, defExcep, existing={}) {
 }
 
 // ─────────────────────────────────────────────────
-// CALCUL TEC
+// CALCUL REC
 // ─────────────────────────────────────────────────
 function calcRc(rcRows, rcR, retY) {
   const rm=rcR/12;
@@ -419,7 +419,7 @@ function VersTable({vers,color,onAdd,onRemove,retY}) {
 // ─────────────────────────────────────────────────
 const TABS = [
   {id:'horizon',  label:'Horizon',  color:'#64748b'},
-  {id:'tec',   label:'TEC',   color:'#f97316'},
+  {id:'REC',   label:'REC',   color:'#f97316'},
   {id:'atlanta',  label:'ATL',  color:'#22c55e'},
   {id:'uc',       label:'UC',       color:'#38bdf8'},
   {id:'simulation',label:'Simulation',color:'#94a3b8'},
@@ -550,7 +550,7 @@ function App() {
 
 
   const simContracts = [
-    {key:'rc', label:'TEC', color:'#f97316', current:rcCurrent, baseRate:rcRdmt},
+    {key:'rc', label:'REC', color:'#f97316', current:rcCurrent, baseRate:rcRdmt},
     {key:'atl', label:'ATL', color:'#22c55e', current:atlCurrent, baseRate:atlRdmt},
     {key:'uc', label:'ATL UC', color:'#38bdf8', current:ucCurrent, baseRate:ucRdmt},
   ].map(c=>({
@@ -651,10 +651,10 @@ function App() {
               <div><div style={S.rLbl}>Capital futur retraite</div><div style={S.rVal('#a78bfa')}>{fmt(totCap)}</div></div>
               <div><div style={S.rLbl}>Pension mensuelle</div><div style={S.rVal('#c4b5fd')}>{fmt(totPen)}/mois</div></div>
             </div>
-            <DecompRow label="Actuel TEC" val={fmt(rcCurrent)} color="#f97316" />
+            <DecompRow label="Actuel REC" val={fmt(rcCurrent)} color="#f97316" />
             <DecompRow label="Actuel ATL" val={fmt(atlCurrent)} color="#22c55e" />
             <DecompRow label="Actuel ATL UC" val={fmt(ucCurrent)} color="#38bdf8" />
-            <DecompRow label="Pension TEC" val={fmt(rcPen)+'/mois'} color="#f97316" />
+            <DecompRow label="Pension REC" val={fmt(rcPen)+'/mois'} color="#f97316" />
             <DecompRow label="Pension ATL" val={fmt(atlPen)+'/mois'} color="#22c55e" />
             <DecompRow label="Pension ATL UC" val={fmt(ucPen)+'/mois'} color="#38bdf8" />
           </div>
@@ -670,17 +670,17 @@ function App() {
           </div>
           <div style={S.navRow}>
             <div></div>
-            <button style={S.btn('#f97316')} onClick={()=>setTab('tec')}>Suivant — TEC →</button>
+            <button style={S.btn('#f97316')} onClick={()=>setTab('REC')}>Suivant — REC →</button>
           </div>
         </div>
       )}
 
-      {/* ── TEC ── */}
-      {tab==='tec' && (
+      {/* ── REC ── */}
+      {tab==='REC' && (
         <div className="fade">
           <div style={S.resultBanner('#f97316')}>
             <div><div style={S.rLbl}>Épargne actuelle estimée</div><div style={S.rVal('#fbbf24')}>{fmt(rcCurrent)}</div></div>
-            <div><div style={S.rLbl}>Capital TEC à la retraite</div><div style={S.rVal('#f97316')}>{fmt(rcTotal)}</div></div>
+            <div><div style={S.rLbl}>Capital REC à la retraite</div><div style={S.rVal('#f97316')}>{fmt(rcTotal)}</div></div>
             <div><div style={S.rLbl}>Rente mensuelle</div><div style={S.rVal('#fbbf24')}>{fmt(rcPen)}/mois</div></div>
           </div>
 
@@ -843,7 +843,7 @@ function App() {
             </div>
           </div>
           <div style={S.navRow}>
-            <button style={S.btn('#64748b')} onClick={()=>setTab('tec')}>← TEC</button>
+            <button style={S.btn('#64748b')} onClick={()=>setTab('REC')}>← REC</button>
             <button style={S.btn('#38bdf8')} onClick={()=>setTab('uc')}>Suivant — ATL UC →</button>
           </div>
         </div>
@@ -939,7 +939,7 @@ function App() {
           <div style={S.card}>
             <div style={S.cardTitle}><span style={S.dot('#94a3b8')}></span>Hypothèses par contrat</div>
             <div style={S.ibox}>
-              Les champs gris sont les inputs de simulation. Par défaut : TEC = 10 400 MAD mensuel, versement exceptionnel = 0 ; ATL et UC = 0.
+              Les champs gris sont les inputs de simulation. Par défaut : REC = 10 400 MAD mensuel, versement exceptionnel = 0 ; ATL et UC = 0.
               Le taux de capitalisation reprend le taux du contrat, mais tu peux le modifier ici sans changer les autres onglets.
             </div>
             <div style={{overflowX:'auto'}}>
@@ -1050,7 +1050,7 @@ function App() {
             </div>
             <div><div style={S.rLbl}>Capital total à la retraite</div><div style={S.rVal('#a78bfa')}>{fmt(totCap)}</div></div>
             <div><div style={S.rLbl}>Pension totale / mois</div><div style={S.rVal('#c4b5fd')}>{fmt(totPen)}/mois</div></div>
-            <div><div style={S.rLbl}>dont TEC</div><div style={{fontSize:14,fontWeight:600,color:'#f97316'}}>{fmt(rcPen)}/mois</div></div>
+            <div><div style={S.rLbl}>dont REC</div><div style={{fontSize:14,fontWeight:600,color:'#f97316'}}>{fmt(rcPen)}/mois</div></div>
             <div><div style={S.rLbl}>dont ATL</div><div style={{fontSize:14,fontWeight:600,color:'#22c55e'}}>{fmt(atlPen)}/mois</div></div>
             <div><div style={S.rLbl}>dont UC</div><div style={{fontSize:14,fontWeight:600,color:'#38bdf8'}}>{fmt(ucPen)}/mois</div></div>
           </div>
@@ -1059,18 +1059,18 @@ function App() {
           <div style={S.grid2}>
             <div style={S.card}>
               <div style={S.cardTitle}><span style={S.dot('#c4b5fd')}></span>Épargne actuelle — décomposition</div>
-              <DecompRow label="TEC" val={fmt(rcCurrent)} color="#f97316" />
+              <DecompRow label="REC" val={fmt(rcCurrent)} color="#f97316" />
               <DecompRow label="ATL" val={fmt(atlCurrent)} color="#22c55e" />
               <DecompRow label="ATL UC" val={fmt(ucCurrent)} color="#38bdf8" />
               <DecompRow label="TOTAL ACTUEL" val={fmt(totCurrent)} color="#c4b5fd" bold />
             </div>
             <div style={S.card}>
               <div style={S.cardTitle}><span style={S.dot('#a78bfa')}></span>Retraite & pension jusqu’à 85 ans — décomposition</div>
-              <DecompRow label="Capital retraite TEC" val={fmt(rcTotal)} color="#f97316" />
+              <DecompRow label="Capital retraite REC" val={fmt(rcTotal)} color="#f97316" />
               <DecompRow label="Capital retraite ATL" val={fmt(atlTotal)} color="#22c55e" />
               <DecompRow label="Capital retraite ATL UC" val={fmt(ucTotal)} color="#38bdf8" />
               <DecompRow label="Capital retraite total" val={fmt(totCap)} color="#a78bfa" bold />
-              <DecompRow label="Pension TEC" val={fmt(rcPen)+'/mois'} color="#f97316" />
+              <DecompRow label="Pension REC" val={fmt(rcPen)+'/mois'} color="#f97316" />
               <DecompRow label="Pension ATL" val={fmt(atlPen)+'/mois'} color="#22c55e" />
               <DecompRow label="Pension ATL UC" val={fmt(ucPen)+'/mois'} color="#38bdf8" />
               <DecompRow label="Pension totale" val={fmt(totPen)+'/mois'} color="#c4b5fd" bold />
@@ -1109,7 +1109,7 @@ function App() {
                     {years.map((y,i)=><span key={y}>{(i===0||i===years.length-1||years.length<=12||i%Math.ceil(years.length/8)===0)?"'"+String(y).slice(2):''}</span>)}
                   </div>
                   <div style={{display:'flex',gap:14,marginTop:10,fontSize:11,flexWrap:'wrap'}}>
-                    {[['#f97316','TEC'],['#22c55e','ATL'],['#38bdf8','UC']].map(([c,l])=>(
+                    {[['#f97316','REC'],['#22c55e','ATL'],['#38bdf8','UC']].map(([c,l])=>(
                       <span key={l}><span style={{display:'inline-block',width:8,height:8,background:c,borderRadius:2,marginRight:4}}></span>{l}</span>
                     ))}
                   </div>
@@ -1126,7 +1126,7 @@ function App() {
                 <table style={S.table}>
                   <thead><tr>
                     <th style={S.th}>Année</th>
-                    <th style={{...S.th,color:'#f97316'}}>TEC</th>
+                    <th style={{...S.th,color:'#f97316'}}>REC</th>
                     <th style={{...S.th,color:'#22c55e'}}>ATL</th>
                     <th style={{...S.th,color:'#38bdf8'}}>UC</th>
                     <th style={S.th}>Total</th>
@@ -1177,9 +1177,9 @@ function App() {
               <div style={S.card}>
                 <div style={S.cardTitle}><span style={S.dot('#a78bfa')}></span>Effort d'épargne</div>
                 {[
-                  ['Capital initial TEC',fmt(rcCap),'#f97316'],
-                  ['Cotisations TEC (brut)',fmt(rcRows.reduce((s,r)=>s+r.cotis,0)),'#f97316'],
-                  ['Vers. excep. TEC (brut)',fmt(rcRows.reduce((s,r)=>s+r.excep,0)),'#f97316'],
+                  ['Capital initial REC',fmt(rcCap),'#f97316'],
+                  ['Cotisations REC (brut)',fmt(rcRows.reduce((s,r)=>s+r.cotis,0)),'#f97316'],
+                  ['Vers. excep. REC (brut)',fmt(rcRows.reduce((s,r)=>s+r.excep,0)),'#f97316'],
                   ['Capital initial ATL',fmt(atlCap),'#22c55e'],
                   ['Cotisations ATL (brut)',fmt(atlCotis*atlFreq*tBase),'#22c55e'],
                   ['Vers. excep. ATL (brut)',fmt(atlVers.reduce((s,v)=>s+v.montant,0)),'#22c55e'],
